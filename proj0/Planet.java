@@ -32,8 +32,8 @@ public class Planet{
 	}
 
 	public double calcDistance(Planet q){
-		double dx = (this.xxPos - q.xxPos) * (this.xxPos - q.xxPos);
-		double dy = (this.yyPos - q.yyPos) * (this.yyPos - q.yyPos);
+		double dx = this.xxPos - q.xxPos;
+		double dy = this.yyPos - q.yyPos;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
