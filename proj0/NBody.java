@@ -8,12 +8,35 @@ public class NBody{
 		double univseRadius = readRadius(filename);
 		Planet[] planetInFile = readPlanets(filename);
 
-		StdDraw.setScale(-univseRadius, univseRadius);
-		StdDraw.picture(0, 0, "images/starfield.jpg");
+		double time = 0;
 
-		for (int i = 0; i < planetInFile.length; i++){
-			planetInFile[i].draw();
+		while (time < T){
+			double[] xForces = new double[planetInFile.length];
+			double[] yForces = new double[planetInFile.length];
+
+			for (int i = 0; i < planetInFile.length; i++){
+				xForces[i] = planetInFile[i].calcNetForceExertedByX(planetInFile);
+				yForces[i] = planetInFile[i].calcNetForceExertedByY(planetInFile);
+
+			}
+
+			for (int i = 0; i < planetInFile.length; i++){
+				planetInFile[i].update(dt, xForces[i], yForces[i]);
+			}
+
+			StdDraw.setScale(-univseRadius, univseRadius);
+			StdDraw.clear();
+			StdDraw.picture(0, 0, "images/starfield.jpg");
+
+			for (int i = 0; i < planetInFile.length; i++){
+				planetInFile[i].draw();
+			}
+
+			StdDraw.show();
+			StdDraw.pause(10);
 		}
+
+		
 		StdOut.printf("%d\n", planetInFile.length);
 		StdOut.printf("%.2e\n", univseRadius);
 		for (int i = 0; i < planetInFile.length; i++) {
@@ -23,6 +46,7 @@ public class NBody{
 		}
 		
 	}
+
 
 	public static double readRadius(String filename){
 		In in = new In(filename);
