@@ -14,6 +14,14 @@ public class NBody{
 		for (int i = 0; i < planetInFile.length; i++){
 			planetInFile[i].draw();
 		}
+		StdOut.printf("%d\n", planets.length);
+		StdOut.printf("%.2e\n", radius);
+		for (int i = 0; i < planets.length; i++) {
+    			StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                  		planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
+                  		planets[i].yyVel, planets[i].mass, planets[i].imgFileName);   
+		}
+		
 	}
 
 	public static double readRadius(String filename){
