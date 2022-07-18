@@ -42,16 +42,16 @@ public class NBody{
 		Planet[] planetInFile = new Planet[numPlanet];
 
 		for (int i = 0; i < numPlanet; i++){
+			
 			double xxPos = in.readDouble();
-            double yyPos = in.readDouble();
+			double yyPos = in.readDouble();
 
-            double xxVel = in.readDouble();
-            double yyVel = in.readDouble();
+			double xxVel = in.readDouble();
+			double yyVel = in.readDouble();
 
-            double mass = in.readDouble();
-            String imgFileName = in.readString();
-
-            planetInFile[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
+			double mass = in.readDouble();
+			String imgFileName = in.readString();
+			planetInFile[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
 		}
 		return planetInFile;
 	}
