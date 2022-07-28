@@ -41,11 +41,8 @@ public class LinkedListDeque <T> {
 	}
 
 	public boolean isEmpty() {
-        if (size == 0){
-        	return True;
-        }
-        return False;
-    }
+		return size == 0;
+	}
 
     public int size(){
 		return size;
@@ -60,7 +57,7 @@ public class LinkedListDeque <T> {
     }
 
     public T removeFirst() {
-    	if (this.isEmpty){
+    	if (this.isEmpty()){
     		return null;
     	}
     	T item = sentinel.next.item;
@@ -72,7 +69,7 @@ public class LinkedListDeque <T> {
     }
 
     public T removeLast() {
-    	if (this.isEmpty){
+    	if (this.isEmpty()){
     		return null;
     	}
     	T item = sentinel.prev.item;
@@ -88,7 +85,7 @@ public class LinkedListDeque <T> {
     	}
         Node ptr = sentinel.next;
         while (index > 0){
-        	ptr = ptr.next
+        	ptr = ptr.next;
         	index -= 1;
         }
         return ptr.item;
