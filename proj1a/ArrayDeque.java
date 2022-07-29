@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
 		nextLast = 1;
 	}
 
-	public void resize(int newSize) {
+	private void resize(int newSize) {
 		T[] array2 = (T[]) new Object[newSize];
 		System.arraycopy(array, 0, array2, 0, size);
 		array2 = array;
