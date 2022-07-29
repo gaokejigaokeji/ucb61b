@@ -13,13 +13,13 @@ public class ArrayDeque<T> {
 		nextLast = 1;
 	}
 
-	public resize(int newSize) {
-		array2 = (T[]) new Object[newSize];
+	public void resize(int newSize) {
+		T[] array2 = (T[]) new Object[newSize];
 		System.arraycopy(array, 0, array2, 0, size);
 		array2 = array;
 		nextFirst = size;
 		nextLast = newSize - 1;
-		return array2;
+
 	}
 
 
@@ -32,7 +32,7 @@ public class ArrayDeque<T> {
 		}
 		size += 1;
 		if (size > 0.5 * array.length) {
-			resize(array.length * 2)
+			resize(array.length * 2);
 		}
 
 		
@@ -50,7 +50,7 @@ public class ArrayDeque<T> {
 		size += 1;
 
 		if (size > 0.5 * array.length) {
-			resize(array.length * 2)
+			resize(array.length * 2);
 		}
 	}
 
