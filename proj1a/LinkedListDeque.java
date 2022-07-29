@@ -44,67 +44,67 @@ public class LinkedListDeque<T> {
 		return size == 0;
 	}
 
-    public int size() {
+	public int size() {
 		return size;
 	}
 
-    public void printDeque() {
-    	for (Node p = sentinel.next; p != sentinel; p = p.next) {
-    		System.out.print(p.item + " ");
-    	}
-    	System.out.println();
+	public void printDeque() {
+		for (Node p = sentinel.next; p != sentinel; p = p.next) {
+			System.out.print(p.item + " ");
+		}
+		System.out.println();
 
-    }
+	}
 
-    public T removeFirst() {
-    	if (this.isEmpty()) {
-    		return null;
-    	}
-    	T item = sentinel.next.item;
-    	sentinel.next = sentinel.next.next;
-    	sentinel.next.prev = sentinel;
-    	size -= 1;
-    	return item;
+	public T removeFirst() {
+		if (this.isEmpty()) {
+			return null;
+		}
+		T item = sentinel.next.item;
+		sentinel.next = sentinel.next.next;
+		sentinel.next.prev = sentinel;
+		size -= 1;
+		return item;
 
-    }
+	}
 
-    public T removeLast() {
-    	if (this.isEmpty()) {
-    		return null;
-    	}
-    	T item = sentinel.prev.item;
-    	sentinel.prev = sentinel.prev.prev;
-    	sentinel.prev.next = sentinel;
-    	size -= 1;
-    	return item;        
-    }
+	public T removeLast() {
+		if (this.isEmpty()) {
+			return null;
+		}
+		T item = sentinel.prev.item;
+		sentinel.prev = sentinel.prev.prev;
+		sentinel.prev.next = sentinel;
+		size -= 1;
+		return item;        
+	}
 
-    public T get(int index) {
-    	if (index > this.size()) {
-    		return null;
-    	}
-        Node ptr = sentinel.next;
-        while (index > 0) {
-        	ptr = ptr.next;
-        	index -= 1;
-        }
-        return ptr.item;
-    }
+	public T get(int index) {
+		if (index > this.size()) {
+			return null;
+		}
+		Node ptr = sentinel.next;
+		while (index > 0) {
+			ptr = ptr.next;
+			index -= 1;
+		}
+		return ptr.item;
+	}
 
-    
-    public T getRecursive(int index) {
-        if (index < 0 || index >= size) {
-        	return null;
-        }
-        return helper(index, sentinel.next);
-    }
 
-    private T helper(int index, Node ptr) {
-    	if (index == 0) {
-    		return ptr.item;
-    	}
-    	return helper(index - 1, ptr.next);
-    }
+	public T getRecursive(int index) {
+		if (index < 0 || index >= size) {
+			return null;
+		}
+		return helper(index, sentinel.next);
+	}
+
+	private T helper(int index, Node ptr) {
+		if (index == 0) {
+			return ptr.item;
+		}
+		return helper(index - 1, ptr.next);
+	}
 
 
 } 
