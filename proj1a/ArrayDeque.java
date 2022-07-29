@@ -1,16 +1,25 @@
 /** Performs some basic linked list tests. */
-public class ArrayDeque <T> {
+public class ArrayDeque<T> {
 	private int size;
-	public T[] array;
+	private T[] array;
 	private int nextFirst;
 	private int nextLast;
 
 
 	public ArrayDeque() {
 		size = 0;
-		T[] array = (T[]) new Object[8];
+		array = (T[]) new Object[8];
 		nextFirst = 0;
 		nextLast = 1;
+	}
+
+	public resize(int newSize) {
+		array2 = (T[]) new Object[newSize];
+		System.arraycopy(array, 0, array2, 0, size);
+		array2 = array;
+		nextFirst = size;
+		nextLast = newSize - 1;
+		return array2;
 	}
 
 
@@ -21,8 +30,12 @@ public class ArrayDeque <T> {
 		} else {
 			nextFirst -= 1;
 		}
-
 		size += 1;
+		if (size > 0.5 * array.length) {
+			resize(array.length * 2)
+		}
+
+		
 
 	}
 
@@ -35,6 +48,10 @@ public class ArrayDeque <T> {
 		}
 
 		size += 1;
+
+		if (size > 0.5 * array.length) {
+			resize(array.length * 2)
+		}
 	}
 
 	public boolean isEmpty() {
@@ -61,6 +78,10 @@ public class ArrayDeque <T> {
 			nextFirst += 1;
 		}
 		size -= 1;
+		if (size > 0 && size < 0.25 * array.length) {
+			resize(array.length / 2);
+		}
+
 		return output;
 
 	}
@@ -74,6 +95,10 @@ public class ArrayDeque <T> {
 			nextLast -= 1;
 		}
 		size -= 1;
+		if (size > 0 && size < 0.25 * array.length) {
+			resize(array.length / 2);
+		}
+
 		return output;
 	}
 
