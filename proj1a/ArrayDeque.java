@@ -10,7 +10,7 @@ public class ArrayDeque<T> {
 		size = 0;
 		array = (T[]) new Object[8];
 		nextFirst = 0;
-		nextLast = 1;
+		nextLast = 0;
 	}
 
 	private void resize(int newSize) {
@@ -71,7 +71,7 @@ public class ArrayDeque<T> {
 
 	public T removeFirst() {
 		T output = array[nextFirst + 1];
-		array[nextFirst + 1] = null;
+		
 		if (nextFirst == array.length - 1) {
 			nextFirst = 0;
 		} else {
@@ -79,7 +79,7 @@ public class ArrayDeque<T> {
 		}
 		size -= 1;
 
-		if (size > 0 && size == 0.25 * array.length) {
+		if (size == 0.25 * array.length) {
 			resize(array.length / 2);
 		}
 
@@ -89,7 +89,7 @@ public class ArrayDeque<T> {
 
 	public T removeLast() {
 		T output = array[nextLast - 1];
-		array[nextLast - 1] = null;
+		
 		if (nextLast == 0) {
 			nextLast = array.length - 1;
 		} else {
@@ -98,7 +98,7 @@ public class ArrayDeque<T> {
 
 		size -= 1;
 
-		if (size > 0 && size == 0.25 * array.length) {
+		if (size == 0.25 * array.length) {
 			resize(array.length / 2);
 		}
 
