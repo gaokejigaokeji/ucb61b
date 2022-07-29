@@ -1,16 +1,16 @@
 /** Performs some basic linked list tests. */
-public class LinkedListDeque <T> {
+public class LinkedListDeque<T> {
 	private int size;
 	private Node sentinel; 
 
 	
-	public class Node {
-		public T item;
-		public Node next;
-		public Node prev;
+	private class Node {
+		private T item;
+		private Node next;
+		private Node prev;
 
 		/** constructor*/
-		public Node(T a, Node p, Node n){
+		public Node(T a, Node p, Node n) {
 			item = a;
 			prev = p;
 			next = n;
@@ -44,12 +44,12 @@ public class LinkedListDeque <T> {
 		return size == 0;
 	}
 
-    public int size(){
+    public int size() {
 		return size;
 	}
 
     public void printDeque() {
-    	for (Node p = sentinel.next; p != sentinel; p = p.next){
+    	for (Node p = sentinel.next; p != sentinel; p = p.next) {
     		System.out.print(p.item + " ");
     	}
     	System.out.println();
@@ -57,7 +57,7 @@ public class LinkedListDeque <T> {
     }
 
     public T removeFirst() {
-    	if (this.isEmpty()){
+    	if (this.isEmpty()) {
     		return null;
     	}
     	T item = sentinel.next.item;
@@ -69,7 +69,7 @@ public class LinkedListDeque <T> {
     }
 
     public T removeLast() {
-    	if (this.isEmpty()){
+    	if (this.isEmpty()) {
     		return null;
     	}
     	T item = sentinel.prev.item;
@@ -80,11 +80,11 @@ public class LinkedListDeque <T> {
     }
 
     public T get(int index) {
-    	if (index > this.size()){
+    	if (index > this.size()) {
     		return null;
     	}
         Node ptr = sentinel.next;
-        while (index > 0){
+        while (index > 0) {
         	ptr = ptr.next;
         	index -= 1;
         }
@@ -93,14 +93,14 @@ public class LinkedListDeque <T> {
 
     
     public T getRecursive(int index) {
-        if (index < 0 || index >= size){
+        if (index < 0 || index >= size) {
         	return null;
         }
         return helper(index, sentinel.next);
     }
 
-    public T helper(int index, Node ptr){
-    	if (index == 0){
+    private T helper(int index, Node ptr) {
+    	if (index == 0) {
     		return ptr.item;
     	}
     	return helper(index - 1, ptr.next);
