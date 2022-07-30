@@ -1,97 +1,139 @@
-public class ArrayDeque<Item> {
+/** Performs some basic linked list tests. */
+public class ArrayDeque<T> {
+	private int size;
+	private T[] array;
+	private int nextFirst;
+	private int nextLast;
 
 
-    public Item[] array ;
-    private int nextFirst;
-    private int nextLast;
-    private int size;
+	public ArrayDeque() {
+		size = 0;
+		array = (T[]) new Object[8];
+		nextFirst = 0;
+		nextLast = 1;
+	}
 
-    private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
-        System.arraycopy(array,0,a,0,size);
-        array = a;
+	private void resize(int newSize) {
+		T[] array2 = (T[]) new Object[newSize];
+		System.arraycopy(array, 0, array2, 0, size);
+		array = array2;
+		nextLast = size;
+		nextFirst = newSize - 1;
 
-        nextFirst = capacity - 1;
-        nextLast = size;
-    }
+	}
 
-    public ArrayDeque() {
-        size = 0;
-        array = (Item[]) new Object[8];
-        nextFirst = 0;
-        nextLast = 0;
-    }
 
-    public void addFirst(Item item) {
-        array[nextFirst] = item;
-        if (this.nextFirst == 0) {
-            nextFirst = size - 1;
-        } else {
-            nextFirst--;
-        }
-        size++;
+	public void addFirst(T item) {
+		if (size == array.length) {
+			resize(array.length * 2);
+		}
+		array[nextFirst] = item;
+		if (nextFirst == 0) {
+			nextFirst = array.length - 1;
+		} else {
+			nextFirst -= 1;
+		}
+		size += 1;
+		
 
-        if (size == array.length) {
-            resize(array.length * 2);
-        }
-    }
-    public void addLast(Item item) {
-        array[nextLast] = item;
-        if (nextLast == size - 1) {
-            nextLast = 0;
-        } else {
-            nextLast++;
-        }
-        size++;
+		
 
-        if (size == array.length) {
-            resize(array.length * 2);
-        }
-    }
+	}
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+	public void addLast(T item) {
+		if (size == array.length) {
+			resize(array.length * 2);
+		}
+		array[nextLast] = item;
+		if (nextLast == array.length - 1) {
+			nextLast = 0;
+		} else {
+			nextLast += 1;
+		}
 
-    public int size() {
-        return  size;
-    }
+		size += 1;
 
-    public void printDeque() {
-        for (int i = 0; i <= array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-    }
+	}
 
-    public Item removeFirst() {
-        Item item = array[nextFirst + 1];
-        if (nextFirst == size - 1) {
-            nextFirst = 0;
-        } else {
-            nextFirst++;
-        }
-        size--;
-        if (size > 0 && size == array.length / 4) {
-            resize(array.length / 2);
-        }
-        return item;
-    }
+	public boolean isEmpty() {
+		return size == 0;
+	}
 
-    public Item removeLast() {
-        Item item = array[nextLast - 1];
-        if (nextLast == 0) {
-            nextLast = size - 1;
-        } else {
-            nextLast--;
-        }
-        size--;
-        if(size == array.length / 4) {
-            resize(array.length / 2);
-        }
-        return item;
-    }
+	public int size() {
+		return size;
+	}
 
-    public Item get(int index) {
-        return array[index];
-    }
+	public void printDeque() {
+		int index;
+
+		if (nextFirst == array.length - 1) {
+			index = 0;
+		} else {
+			index = nextFirst + 1;
+		}
+
+
+		while (index != nextLast) {
+			System.out.print(array[index] + " ");
+			index = (index + 1) % array.length;
+		}
+		System.out.println();
+
+	}
+
+	public T removeFirst() {
+		if (size == 0) {
+			return null;
+		}
+
+		if (nextFirst == array.length - 1) {
+			nextFirst = 0;
+		}else {
+			nextFirst += 1;
+		}
+
+		T output = array[nextFirst];
+		array[nextFirst] = null;
+		size -= 1;
+
+		if (size <= 0.25 * array.length) {
+			resize(array.length / 2);
+		}
+
+		return output;
+
+	}
+
+	public T removeLast() {
+		if (size == 0) {
+			return null;
+		}
+		if (nextLast == 0) {
+			nextLast = array.length - 1;
+		} else {
+			nextLast -= 1;
+		}
+
+		T output = array[nextLast];
+		
+		array[nextLast] = null;
+
+		size -= 1;
+
+		if (size <= 0.25 * array.length) {
+			resize(array.length / 2);
+		}
+
+		return output;
+	}
+
+	public T get(int index) {
+		if (index < 0 || index >= array.length || array[index] == null) {
+			return null;
+		} else {
+			return array[index];
+		}
+		
+	}
+
 }
