@@ -26,7 +26,7 @@ public class ArrayDeque<T> {
 	public void addFirst(T item) {
 		array[nextFirst] = item;
 		if (nextFirst == 0) {
-			nextFirst = array.length - 1;
+			nextFirst = size - 1;
 		} else {
 			nextFirst -= 1;
 		}
@@ -41,7 +41,7 @@ public class ArrayDeque<T> {
 
 	public void addLast(T item) {
 		array[nextLast] = item;
-		if (nextLast == array.length - 1) {
+		if (nextLast == size - 1) {
 			nextLast = 0;
 		} else {
 			nextLast += 1;
@@ -76,7 +76,7 @@ public class ArrayDeque<T> {
 
 		T output = array[nextFirst + 1];
 		
-		if (nextFirst == array.length - 1) {
+		if (nextFirst == size - 1) {
 			nextFirst = 0;
 		} else {
 			nextFirst += 1;
@@ -99,7 +99,7 @@ public class ArrayDeque<T> {
 		T output = array[nextLast - 1];
 		
 		if (nextLast == 0) {
-			nextLast = array.length - 1;
+			nextLast = size - 1;
 		} else {
 			nextLast -= 1;
 		}
