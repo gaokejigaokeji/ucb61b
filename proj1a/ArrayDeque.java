@@ -17,8 +17,8 @@ public class ArrayDeque<T> {
 		T[] array2 = (T[]) new Object[newSize];
 		System.arraycopy(array, 0, array2, 0, size);
 		array = array2;
-		nextFirst = size;
-		nextLast = newSize - 1;
+		nextLast = size;
+		nextFirst = newSize - 1;
 
 	}
 
