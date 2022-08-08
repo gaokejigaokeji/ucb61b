@@ -1,11 +1,11 @@
 // TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
-import sun.util.resources.ms.CalendarData_ms_MY;
-import synthesizer.AbstractBoundedQueue;
+
+
 
 import java.util.Iterator;
 
-public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Iterable<T> {
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
     /* Index for the next enqueue. */
