@@ -48,6 +48,11 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("Dccd", cc));
         assertFalse(palindrome.isPalindrome("ddccd", cc));
         assertFalse(palindrome.isPalindrome("DDccd", cc));
+        assertFalse(palindrome.isPalindrome("cc", cc));
+        assertFalse(palindrome.isPalindrome("cac", cc));
+        assertFalse(palindrome.isPalindrome("caac", cc));
+        assertFalse(palindrome.isPalindrome("racecar", cc));
+        assertFalse(palindrome.isPalindrome("noon", cc));
     }
 
 
